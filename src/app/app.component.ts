@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   public form: FormGroup;
-  unsubcribe: any
+  unsubscribe: any;
 
   public fields: any[] = [
     {
@@ -31,14 +31,6 @@ export class AppComponent {
       label: 'Email',
       value: '',
       required: true,
-    },
-
-    {
-      type: 'file',
-      name: 'picture',
-      label: 'Picture',
-      required: true,
-      onUpload: this.onUpload.bind(this)
     },
     {
       type: 'dropdown',
@@ -74,12 +66,9 @@ export class AppComponent {
     }
   ];
 
-  constructor() {
-    this.form = new FormGroup({
-      fields: new FormControl(JSON.stringify(this.fields))
-    })
-    this.unsubcribe = this.form.valueChanges.subscribe((update) => {
-      console.log(update);
+  constructor() {    
+    this.form = new FormGroup({});
+    this.unsubscribe = this.form.valueChanges.subscribe((update) => {
       this.fields = JSON.parse(update.fields);
     });
   }
@@ -92,7 +81,13 @@ export class AppComponent {
     return this.fields;
   }
 
-  ngDistroy() {
-    this.unsubcribe();
+  handleSubmitForm(e: any){
+    console.log(e);
+  }
+
+  ngOnDestroy(): void {
+    if(this.unsubscribe){
+      this.unsubscribe();
+    }
   }
 }

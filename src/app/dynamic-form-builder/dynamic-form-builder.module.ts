@@ -10,10 +10,20 @@ import { DropDownComponent } from './atoms/dropdown';
 import { CheckBoxComponent } from './atoms/checkbox';
 import { RadioComponent } from './atoms/radio';
 
+// material 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
+    FormsModule,
+    MatCheckboxModule,
+    MatInputModule
   ],
   declarations: [
     DynamicFormBuilderComponent,

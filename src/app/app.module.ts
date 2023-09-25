@@ -7,11 +7,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormBuilderModule } from './dynamic-form-builder/dynamic-form-builder.module';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
-  imports:      [ BrowserModule, ReactiveFormsModule , DynamicFormBuilderModule],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    DynamicFormBuilderModule,
+    BrowserAnimationsModule,
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
